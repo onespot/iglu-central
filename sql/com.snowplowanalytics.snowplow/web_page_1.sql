@@ -22,13 +22,13 @@ CREATE TABLE atomic.com_snowplowanalytics_snowplow_web_page_1 (
 	schema_format   varchar(128)  encode runlength not null,
 	schema_version  varchar(128)  encode runlength not null,
 	-- Parentage of this type
-	root_id         char(36)      encode raw not null,
+	root_id         char(36)      encode lzo not null,
 	root_tstamp     timestamp     encode raw not null,
 	ref_root        varchar(255)  encode runlength not null,
 	ref_tree        varchar(1500) encode runlength not null,
 	ref_parent      varchar(255)  encode runlength not null,
 	-- Properties of this type
-	id              char(36)      encode raw not null,
+	id              char(36)      encode lzo not null,
 	FOREIGN KEY(root_id) REFERENCES atomic.events(event_id)
 )
 DISTSTYLE KEY
